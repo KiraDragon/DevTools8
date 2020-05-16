@@ -146,13 +146,24 @@ namespace Snake
                     Console.ForegroundColor = ConsoleColor.Red;
                     string youwin = "PASS LEVEL 1!";
                     string _continue = "Press Enter to Continue";
+                    string _exit = "Press ANY Other Key To Exit";
                     Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n");
                     Console.Write(new string(' ', (Console.WindowWidth - youwin.Length) / 2));
                     Console.WriteLine(youwin);
                     Console.Write(new string(' ', (Console.WindowWidth - _continue.Length) / 2));
                     Console.WriteLine(_continue); 
-                    Console.ReadLine();
-                    return Level.Two; 
+                    Console.Write(new string(' ', (Console.WindowWidth - _exit.Length) / 2));
+                    Console.WriteLine(_exit); 
+                    if (Console.ReadKey().Key == ConsoleKey.Enter)
+                    {
+                        return Level.Two; 
+                    }
+                    else
+                    {
+                        SaveScore(username, userpoints); 
+                        return Level.End;
+                    }
+                    
                 }
                 else if(level == Level.Two && userpoints >= 200)
                 {
@@ -160,13 +171,23 @@ namespace Snake
                     Console.ForegroundColor = ConsoleColor.Red;
                     string youwin = "PASS LEVEL 2!";
                     string _continue = "Press Enter to Continue";
+                    string _exit = "Press ANY Other Key To Exit";
                     Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n");
                     Console.Write(new string(' ', (Console.WindowWidth - youwin.Length) / 2));
                     Console.WriteLine(youwin);
                     Console.Write(new string(' ', (Console.WindowWidth - _continue.Length) / 2));
                     Console.WriteLine(_continue); 
-                    Console.ReadLine();
-                    return Level.Three; 
+                    Console.Write(new string(' ', (Console.WindowWidth - _exit.Length) / 2));
+                    Console.WriteLine(_exit); 
+                    if (Console.ReadKey().Key == ConsoleKey.Enter)
+                    {
+                        return Level.Three; 
+                    }
+                    else
+                    {
+                        SaveScore(username, userpoints); 
+                        return Level.End;
+                    }
                 }
                 // When the user gets 1000 points, the user would win
                 else if (level == Level.Three && userpoints >= 300)
@@ -174,15 +195,22 @@ namespace Snake
                     Console.SetCursorPosition(0, 0);
                     Console.ForegroundColor = ConsoleColor.Red;
                     string youwin = "PASS LEVEL 3! YOU WIN!";
-                    string _continue = "Press Enter to Continue";
+                    string _exit = "Press ANY Key To Exit";
                     Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n");
                     Console.Write(new string(' ', (Console.WindowWidth - youwin.Length) / 2));
                     Console.WriteLine(youwin);
-                    Console.Write(new string(' ', (Console.WindowWidth - _continue.Length) / 2));
-                    Console.WriteLine(_continue); 
-                    SaveScore(username, userpoints); 
-                    Console.ReadLine();
-                    return Level.End; 
+                    Console.Write(new string(' ', (Console.WindowWidth - _exit.Length) / 2));
+                    Console.WriteLine(_exit); ; 
+                    if (Console.ReadKey().Key == ConsoleKey.Enter)
+                    {
+                        SaveScore(username, userpoints); 
+                        return Level.End;
+                    }
+                    else
+                    {
+                        SaveScore(username, userpoints); 
+                        return Level.End;
+                    }
                 }
                 else
                 {
