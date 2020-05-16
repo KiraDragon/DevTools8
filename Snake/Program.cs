@@ -286,7 +286,7 @@ namespace Snake
                     {
                         Console.SetCursorPosition(position.col, position.row);
                         Console.ForegroundColor = ConsoleColor.DarkGray;
-                        Console.Write("*");
+                        Console.Write("O");
                     }
 
                     int userPoints = 0;
@@ -387,7 +387,7 @@ namespace Snake
                         // Draws the snake's first body after the snake head in every frame
                         Console.SetCursorPosition(snakeHead.col, snakeHead.row);
                         Console.ForegroundColor = ConsoleColor.DarkGray;
-                        Console.Write("*");
+                        Console.Write("O");
 
                         // Adds the snake head into the snake element
                         snakeElements.Enqueue(snakeNewHead);
@@ -475,7 +475,7 @@ namespace Snake
                 {
                    Console.Clear(); 
                    Console.ForegroundColor = ConsoleColor.Red;
-                   Console.WriteLine("\n <*** S N A K E ");
+                   Console.WriteLine("\n <OOO S N A K E ");
                    Console.ForegroundColor = ConsoleColor.Green;
                    Console.WriteLine("\n - Start");
                    Console.WriteLine("\n - Scoreboard");
@@ -512,7 +512,7 @@ namespace Snake
                 {
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("In this game, you play as a snake ( ***> )."); 
+                    Console.WriteLine("In this game, you play as a snake ( OOO> )."); 
                     Console.WriteLine(" "); 
                     Console.WriteLine("Your goal is to eat the food ( \u2665\u2665 ) before they disappear to grow in length");
                     Console.WriteLine(" ");
