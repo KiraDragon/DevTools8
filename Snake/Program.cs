@@ -63,8 +63,8 @@ namespace Snake
             List<Position> obstacles = new List<Position>();
             for(int i = 0; i < 5; i++)
             {
-                obstacles.Add(new Position(rng.Next(0, Console.WindowHeight),
-                            rng.Next(0, Console.WindowWidth))); 
+                obstacles.Add(new Position(rng.Next(6, Console.WindowHeight-6),
+                            rng.Next(6, Console.WindowWidth-6))); 
             };
 
 			//produce obstacles item on certain position with Cyan coloured "="
@@ -85,8 +85,8 @@ namespace Snake
                     do
                     {
                         //When the snake collides with the food, it sets obstacle to a new random position that does not contain the snake, the obstacle or food
-                        obstacle = new Position(rng.Next(0, Console.WindowHeight),
-                            rng.Next(0, Console.WindowWidth));
+                        obstacle = new Position(rng.Next(6, Console.WindowHeight-6),
+                            rng.Next(6, Console.WindowWidth-6));
                     }
                     while (snakeElements.Contains(obstacle) ||
                         obstacles.Contains(obstacle) ||
@@ -107,8 +107,8 @@ namespace Snake
             Position food;
             do
             {
-                food = new Position(rng.Next(0, Console.WindowHeight),
-                    rng.Next(0, Console.WindowWidth));
+                food = new Position(rng.Next(6, Console.WindowHeight-6),
+                    rng.Next(6, Console.WindowWidth-6));
             }
             while (snakeElements.Contains(food) || obstacles.Contains(food));
             switch(determiner)
@@ -358,10 +358,10 @@ namespace Snake
                             snakeHead.col + nextDirection.col); // Sets the new position of snake head based on the snake's direction 
                 
                         // Makes the snake come out from the other side of the window when it passes through the edge of the window 
-                        if (snakeNewHead.col < 0) snakeNewHead.col = Console.WindowWidth - 1;
-                        if (snakeNewHead.row < 0) snakeNewHead.row = Console.WindowHeight - 1;
-                        if (snakeNewHead.row >= Console.WindowHeight) snakeNewHead.row = 0;
-                        if (snakeNewHead.col >= Console.WindowWidth) snakeNewHead.col = 0;
+                        if (snakeNewHead.col < 5) snakeNewHead.col = Console.WindowWidth - 6;
+                        if (snakeNewHead.row < 5) snakeNewHead.row = Console.WindowHeight - 6;
+                        if (snakeNewHead.row >= Console.WindowHeight - 5) snakeNewHead.row = 5;
+                        if (snakeNewHead.col >= Console.WindowWidth - 5) snakeNewHead.col = 5;
 
                         //Replace mainloop = GameOver(obstacles, snakeElements, snakeNewHead, userPoints, userName) with below code; 
                         if (snakeElements.Contains(snakeNewHead) || obstacles.Contains(snakeNewHead))
