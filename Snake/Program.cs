@@ -72,7 +72,7 @@ namespace Snake
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.SetCursorPosition(obstacle.col, obstacle.row);
-                Console.Write("=");
+                Console.Write("▒");
             }
 
             return obstacles; 
@@ -99,7 +99,7 @@ namespace Snake
                     //Sets the color of the obstacle
                     Console.ForegroundColor = ConsoleColor.Cyan;
                     //Writes = in the console as visualisation of the obstacle
-                    Console.Write("=");
+                    Console.Write("▒");
         }
 
         static public Position MakeFood(Random rng, List<Position> obstacles, Queue<Position> snakeElements, int determiner)
@@ -116,22 +116,22 @@ namespace Snake
                 case 0:     
                      Console.SetCursorPosition(food.col, food.row);
                      Console.ForegroundColor = ConsoleColor.Yellow;
-                     Console.Write("\u2665\u2665");
+                     Console.Write("♥♥");
                      break; 
                 case 1:
                     Console.SetCursorPosition(food.col, food.row);
                      Console.ForegroundColor = ConsoleColor.DarkRed;
-                     Console.Write("\u2665\u2665");
+                     Console.Write("♥♥");
                      break;
                 case 2:
                     Console.SetCursorPosition(food.col, food.row);
                      Console.ForegroundColor = ConsoleColor.Green;
-                     Console.Write("\u2665\u2665");
+                     Console.Write("♥♥");
                      break;
                 default:
                     Console.SetCursorPosition(food.col, food.row);
                      Console.ForegroundColor = ConsoleColor.DarkBlue;
-                     Console.Write("\u2665\u2665");
+                     Console.Write("♥♥");
                     break; 
             }
 
@@ -400,9 +400,13 @@ namespace Snake
                         if (direction == up) Console.Write("^");
                         if (direction == down) Console.Write("v");
                 
-                        if (snakeNewHead.col == food.col && snakeNewHead.row == food.row)
+                        if ((snakeNewHead.col == food.col || snakeNewHead.col == food.col + 1) && snakeNewHead.row == food.row)
                         {
-                            Console.Beep();  
+                            Console.Beep();
+                            Console.SetCursorPosition(food.col, food.row);
+                            Console.Write(" ");
+                            Console.SetCursorPosition(food.col + 1, food.row);
+                            Console.Write(" ");
                             //If the snake's head intercepts the location of the food
                             // feeding the snake
                             food = MakeFood(randomNumbersGenerator, obstacles, snakeElements, determiner);
@@ -427,7 +431,8 @@ namespace Snake
                             lastFoodTime = Environment.TickCount;
                             sleepTime--;
 
-                            MakeNewObstacles(randomNumbersGenerator, obstacles, food, snakeElements); 
+                            MakeNewObstacles(randomNumbersGenerator, obstacles, food, snakeElements);
+        
                         }
                         else
                         {
@@ -444,6 +449,8 @@ namespace Snake
                             negativePoints = negativePoints + 50;
                             //Sets the cursor position to where the food was and deletes it by writing a space over it
                             Console.SetCursorPosition(food.col, food.row);
+                            Console.Write(" ");
+                            Console.SetCursorPosition(food.col + 1, food.row);
                             Console.Write(" ");
                             food = MakeFood(randomNumbersGenerator, obstacles, snakeElements, determiner);
                             //Resets the timer

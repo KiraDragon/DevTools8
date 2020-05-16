@@ -18,3 +18,4 @@ J: 0 points
 J: 0 points
 J: 0 points
 start: 0 points
+hi: 0 points
