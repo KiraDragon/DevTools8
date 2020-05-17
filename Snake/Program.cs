@@ -145,8 +145,8 @@ namespace Snake
                     Console.SetCursorPosition(0, 0);
                     Console.ForegroundColor = ConsoleColor.Red;
                     string youwin = "PASS LEVEL 1!";
-                    string _continue = "Press Enter to Continue";
-                    string _exit = "Press ANY Other Key To Exit";
+                    string _continue = "Press ANY KEY to Continue";
+                    string _exit = "Press ESC Key To Exit";
                     Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n");
                     Console.Write(new string(' ', (Console.WindowWidth - youwin.Length) / 2));
                     Console.WriteLine(youwin);
@@ -154,14 +154,14 @@ namespace Snake
                     Console.WriteLine(_continue); 
                     Console.Write(new string(' ', (Console.WindowWidth - _exit.Length) / 2));
                     Console.WriteLine(_exit); 
-                    if (Console.ReadKey().Key == ConsoleKey.Enter)
-                    {
-                        return Level.Two; 
-                    }
-                    else
+                    if (Console.ReadKey().Key == ConsoleKey.Escape)
                     {
                         SaveScore(username, userpoints); 
                         return Level.End;
+                    }
+                    else
+                    {
+                        return Level.Two; 
                     }
                     
                 }
@@ -170,8 +170,8 @@ namespace Snake
                     Console.SetCursorPosition(0, 0);
                     Console.ForegroundColor = ConsoleColor.Red;
                     string youwin = "PASS LEVEL 2!";
-                    string _continue = "Press Enter to Continue";
-                    string _exit = "Press ANY Other Key To Exit";
+                    string _continue = "Press ANY KEY to Continue";
+                    string _exit = "Press ESC Key To Exit";
                     Console.WriteLine("\n\n\n\n\n\n\n\n\n\n\n");
                     Console.Write(new string(' ', (Console.WindowWidth - youwin.Length) / 2));
                     Console.WriteLine(youwin);
@@ -179,14 +179,14 @@ namespace Snake
                     Console.WriteLine(_continue); 
                     Console.Write(new string(' ', (Console.WindowWidth - _exit.Length) / 2));
                     Console.WriteLine(_exit); 
-                    if (Console.ReadKey().Key == ConsoleKey.Enter)
+                    if (Console.ReadKey().Key == ConsoleKey.Escape)
                     {
-                        return Level.Three; 
+                        SaveScore(username, userpoints); 
+                        return Level.End; 
                     }
                     else
                     {
-                        SaveScore(username, userpoints); 
-                        return Level.End;
+                        return Level.Three;
                     }
                 }
                 // When the user gets 1000 points, the user would win
@@ -292,6 +292,7 @@ namespace Snake
             int lives = 3;
             while(true)
             {
+                Level levelnow = Level.One; 
                 if(state == GameState.Start)
                 {
                     Console.Clear(); 
@@ -352,7 +353,7 @@ namespace Snake
 
                 
 
-                        level = WinCondition(userName, userPoints, level); 
+                        levelnow = WinCondition(userName, userPoints, level); 
 
                         // Increment 1
                         negativePoints++;
@@ -492,7 +493,7 @@ namespace Snake
 
                         Thread.Sleep((int)sleepTime);
 
-                        if(level == Level.End)
+                        if(levelnow == Level.End)
                         {
                             mainloop = false; 
                             state = GameState.InMainMenu; 
