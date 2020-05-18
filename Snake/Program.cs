@@ -154,14 +154,18 @@ namespace Snake
                     Console.WriteLine(_continue); 
                     Console.Write(new string(' ', (Console.WindowWidth - _exit.Length) / 2));
                     Console.WriteLine(_exit); 
-                    if (Console.ReadKey().Key == ConsoleKey.Escape)
+                    if (Console.ReadKey().Key != ConsoleKey.Escape)
+                    {
+                        return Level.Two; 
+                    }
+                    else if (Console.ReadKey().Key == ConsoleKey.Escape)
                     {
                         SaveScore(username, userpoints); 
-                        return Level.End;
+                        return Level.End; 
                     }
                     else
                     {
-                        return Level.Two; 
+                        return level;
                     }
                     
                 }
@@ -179,14 +183,18 @@ namespace Snake
                     Console.WriteLine(_continue); 
                     Console.Write(new string(' ', (Console.WindowWidth - _exit.Length) / 2));
                     Console.WriteLine(_exit); 
-                    if (Console.ReadKey().Key == ConsoleKey.Escape)
+                    if (Console.ReadKey().Key != ConsoleKey.Escape)
+                    {
+                        return Level.Three; 
+                    }
+                    else if (Console.ReadKey().Key == ConsoleKey.Escape)
                     {
                         SaveScore(username, userpoints); 
-                        return Level.End; 
+                        return Level.End;
                     }
                     else
                     {
-                        return Level.Three;
+                        return level;
                     }
                 }
                 // When the user gets 1000 points, the user would win
@@ -206,7 +214,7 @@ namespace Snake
                         SaveScore(username, userpoints); 
                         return Level.End;
                     }
-                    else
+                    else 
                     {
                         SaveScore(username, userpoints); 
                         return Level.End;
@@ -353,7 +361,7 @@ namespace Snake
 
                 
 
-                        levelnow = WinCondition(userName, userPoints, level); 
+                        levelnow = WinCondition(userName, userPoints, levelnow); 
 
                         // Increment 1
                         negativePoints++;
